@@ -1,15 +1,15 @@
 from flask import Flask, request
-import os
 import commands
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def main():
-    if "auth" in request.args and request.args['auth'] == 'LJun':
-        print commands.getoutput("git add -A && git commit -m ljun")
-    return 'Hello LJun!'
+    if "auth" in request.args and request.args['time'] == '20160606':
+        print commands.getoutput("git pull")
+        return '1'
+    return '0'
 
 
 if __name__ == '__main__':
