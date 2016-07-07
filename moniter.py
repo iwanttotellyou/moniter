@@ -1,5 +1,5 @@
 from flask import Flask, request
-
+import os
 import commands
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 def main():
     if "auth" in request.args and request.args['auth'] == 'LJun':
-        print commands.getoutput("cd ")
+        print commands.getoutput("git add -A && git commit -m ljun")
     return 'Hello LJun!'
 
 
