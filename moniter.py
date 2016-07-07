@@ -1,7 +1,10 @@
 from flask import Flask, request
 import commands
+import logging
 
 app = Flask(__name__)
+
+logging.basicConfig(filename='flog.txt', level=logging.INFO)
 
 
 def get_argv(maps, key, default=None):
@@ -15,7 +18,7 @@ def get_argv(maps, key, default=None):
 @app.route('/', methods=['GET'])
 def main():
     if get_argv(request.args, 'time') == '20160606':
-        print commands.getoutput("cd /root/blog-hugo && git pull")
+        logging.info(commands.getoutput("cd /root/blog-hugo && git pull"))
         return '1'
     return '0'
 
